@@ -1,0 +1,39 @@
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { PrismaModule } from './prisma/prisma.module';
+import { UsersModule } from './users/users.module';
+import { OnboardingModule } from './onboarding/onboarding.module';
+import { SkillsModule } from './skills/skills.module';
+import { MatchingModule } from './matching/matching.module';
+import { SessionsModule } from './sessions/sessions.module';
+import { CreditsModule } from './credits/credits.module';
+import { ReviewsModule } from './reviews/reviews.module';
+import { UploadModule } from './upload/upload.module';
+import { NotificationsModule } from './notifications/notifications.module';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    PrismaModule,
+    AuthModule,
+    UsersModule,
+    ScheduleModule.forRoot(),
+    OnboardingModule,
+    SkillsModule,
+    MatchingModule,
+    SessionsModule,
+    CreditsModule,
+    ReviewsModule,
+    UploadModule,
+    NotificationsModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
